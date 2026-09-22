@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sparkles } from 'lucide-react';
 import { NAV_LINKS } from '@/lib/constants';
+import { getAssetPath, handleAssetError } from '@/lib/assets';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -38,8 +39,9 @@ export default function Navbar() {
             aria-label="SKYX Digi Solutions - Home"
           >
             <img
-              src="/assets/skyx-logo.png"
+              src={getAssetPath('/assets/skyx-logo.png')}
               alt="SKYX Digi Solutions"
+              onError={handleAssetError}
               className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               style={{ filter: 'drop-shadow(0 2px 10px rgba(249,115,22,0.35))' }}
             />

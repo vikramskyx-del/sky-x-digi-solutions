@@ -713,6 +713,16 @@
     });
 
     renderArticles();
+
+    // Image asset fallback recovery
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', function() {
+        if (this.dataset.retried) return;
+        this.dataset.retried = 'true';
+        const file = this.getAttribute('src').split('/').pop();
+        this.src = './assets/' + file;
+      });
+    });
   </script>
 </body>
 </html>

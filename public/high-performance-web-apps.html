@@ -422,6 +422,16 @@
       const scrolled = (winScroll / height) * 100;
       document.getElementById('progress-bar').style.width = scrolled + '%';
     });
+
+    // Image asset fallback recovery
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', function() {
+        if (this.dataset.retried) return;
+        this.dataset.retried = 'true';
+        const file = this.getAttribute('src').split('/').pop();
+        this.src = './assets/' + file;
+      });
+    });
   </script>
 </body>
 </html>

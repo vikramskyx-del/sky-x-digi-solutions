@@ -1,5 +1,6 @@
 'use client';
 import { Mail, Phone, MapPin, ArrowUp, MessageSquare } from 'lucide-react';
+import { getAssetPath, handleAssetError } from '@/lib/assets';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -16,7 +17,7 @@ export default function Footer() {
       {/* SKYX Brand Top Hairline — Orange (X arrow) to Teal (digi solutions) */}
       <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#F97316] via-[#FB923C] via-[#0EA5E9] to-transparent" />
 
-      {/* Background ambient lighting */}
+      {/* Subtle emerald atmospheric top glow */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 pointer-events-none opacity-15"
         style={{
@@ -30,8 +31,9 @@ export default function Footer() {
           <div className="lg:col-span-4 space-y-6">
             <div className="flex items-center">
               <img
-                src="/assets/skyx-logo.png"
+                src={getAssetPath('/assets/skyx-logo.png')}
                 alt="SKYX Digi Solutions"
+                onError={handleAssetError}
                 className="h-10 w-auto object-contain"
                 style={{ filter: 'drop-shadow(0 1px 6px rgba(5,150,105,0.2))' }}
               />

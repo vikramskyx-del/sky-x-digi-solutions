@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import { getAssetPath } from "@/lib/assets";
 
 export const metadata: Metadata = {
   title: "SKYX Digi Solutions | High-Performance Digital & AI Engineering",
@@ -19,6 +20,11 @@ export const metadata: Metadata = {
     title: "SKYX Digi Solutions",
     description: "High-Performance Digital & AI Engineering",
   },
+  icons: {
+    icon: getAssetPath("/assets/skyx-logo.png"),
+    shortcut: getAssetPath("/assets/skyx-logo.png"),
+    apple: getAssetPath("/assets/skyx-logo.png"),
+  },
 };
 
 export default function RootLayout({
@@ -35,6 +41,26 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                window.addEventListener('error', function(e) {
+                  var target = e.target;
+                  if (target && target.tagName === 'IMG' && !target.dataset.retried) {
+                    target.dataset.retried = 'true';
+                    var src = target.getAttribute('src') || '';
+                    var filename = src.split('/').pop();
+                    if (filename) {
+                      var isGh = window.location.pathname.indexOf('/sky-x-digi-solutions') !== -1;
+                      target.src = isGh ? '/sky-x-digi-solutions/assets/' + filename : './assets/' + filename;
+                    }
+                  }
+                }, true);
+              })();
+            `,
+          }}
+        />
       </head>
       <body className="bg-[#080B09] text-[#F1F5F9] antialiased selection:bg-[#10B981]/30 selection:text-white">
         <SmoothScroll>{children}</SmoothScroll>
@@ -42,4 +68,3 @@ export default function RootLayout({
     </html>
   );
 }
-

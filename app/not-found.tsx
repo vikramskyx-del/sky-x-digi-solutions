@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import { getAssetPath } from '@/lib/assets';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#060c1c] text-white px-6 text-center">
       <img
-        src="/assets/skyx-logo.png"
+        src={getAssetPath('/assets/skyx-logo.png')}
         alt="SKYX Digi Solutions"
         className="h-10 w-auto object-contain mb-8 drop-shadow-[0_0_20px_rgba(0,145,255,0.4)]"
       />

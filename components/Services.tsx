@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SERVICES } from '@/lib/constants';
 import { ChevronRight, CheckCircle, X, Sparkles, ArrowRight } from 'lucide-react';
+import { getAssetPath, handleAssetError } from '@/lib/assets';
 
 const serviceImages: Record<string, string> = {
   '01': '/assets/svc_marketing.jpg',
@@ -130,8 +131,9 @@ export default function Services() {
                 {/* Service Hero Image with Zoom Effect */}
                 <div className="relative h-56 w-full overflow-hidden bg-slate-950">
                   <img
-                    src={serviceImages[svc.id] || '/assets/svc_marketing.jpg'}
+                    src={getAssetPath(serviceImages[svc.id] || '/assets/svc_marketing.jpg')}
                     alt={svc.title}
+                    onError={handleAssetError}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-85 group-hover:opacity-100"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-transparent to-transparent" />

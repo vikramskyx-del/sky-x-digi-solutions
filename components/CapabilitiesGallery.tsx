@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { getAssetPath, handleAssetError } from '@/lib/assets';
 
 const SHOWCASE_ITEMS = [
   {
@@ -99,8 +100,9 @@ export default function CapabilitiesGallery() {
               {/* Image Showcase Container */}
               <div className="relative h-72 sm:h-80 w-full overflow-hidden bg-slate-950">
                 <img
-                  src={item.image}
+                  src={getAssetPath(item.image)}
                   alt={item.title}
+                  onError={handleAssetError}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-85 group-hover:opacity-100"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-transparent to-transparent" />

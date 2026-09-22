@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { CAREERS } from '@/lib/constants';
 import { MapPin, Clock, DollarSign, ArrowRight } from 'lucide-react';
+import { getAssetPath, handleAssetError } from '@/lib/assets';
 
 const careerImages = [
   '/assets/human_laptop_2.jpg',
@@ -76,8 +77,9 @@ export default function Careers() {
               {/* Top Photography */}
               <div className="relative h-48 w-full overflow-hidden bg-slate-950">
                 <img
-                  src={careerImages[i] || '/assets/human_laptop_1.jpg'}
+                  src={getAssetPath(careerImages[i] || '/assets/human_laptop_1.jpg')}
                   alt={job.title}
+                  onError={handleAssetError}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-85 group-hover:opacity-100"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-transparent to-transparent" />

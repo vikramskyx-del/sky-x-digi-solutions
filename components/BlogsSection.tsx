@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, BookOpen, Clock, Calendar, Sparkles } from 'lucide-react';
+import { getAssetPath, handleAssetError } from '@/lib/assets';
 
 const BLOG_POSTS = [
   {
@@ -113,14 +114,15 @@ export default function BlogsSection() {
             >
               {/* Entire Card is a Clickable Link directly navigating to the blog page */}
               <a
-                href={post.link}
+                href={getAssetPath(post.link)}
                 className="rounded-2xl overflow-hidden group flex flex-col justify-between h-full bg-gradient-to-br from-[#0F172A] via-[#0B0F19] to-[#020617] border border-white/[0.08] hover:border-orange-500/60 shadow-[0_16px_40px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_50px_rgba(249,115,22,0.2)] transition-all duration-500 hover:-translate-y-2 block no-underline"
               >
                 {/* Featured Image */}
                 <div className="relative h-52 w-full overflow-hidden bg-slate-950">
                   <img
-                    src={post.image}
+                    src={getAssetPath(post.image)}
                     alt={post.title}
+                    onError={handleAssetError}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-85 group-hover:opacity-100"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-transparent to-transparent" />
